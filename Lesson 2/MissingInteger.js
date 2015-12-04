@@ -1,7 +1,6 @@
 'use strict';
 
 let getNextMin = function(number, done) {
-  done[number] = 1;
   let n = number;
   while (true) {
     n++;
@@ -12,9 +11,9 @@ let getNextMin = function(number, done) {
 };
 
 let solution = function(A) {
-  let min = A[0];
+  let min = 1;
   let done = [];
-  
+
   for (let i = 0; i < A.length; i++) {
     done[A[i]] = 1;
     if (A[i] == min) {
@@ -23,8 +22,3 @@ let solution = function(A) {
   }
   return min;
 };
-
-//console.log(solution([1, 3, 7, 4, 1, 2]));
-
-
-//console.log(solution([1, 1]));
