@@ -5,35 +5,47 @@ package com.lesson.one;
  * The following issues have been detected: wrong answers.
  *
  * For example, for the input [-1000, 1000] the solution returned a wrong answer (got 0 expected 2000).
+ *
+ * The following issues have been detected: wrong answers.
+ * For example, for the input [1, 1] the solution returned a wrong answer (got 2147483647 expected 0).
+ *
  */
 public class TapeEquilibrium {
+    private int minimumDifference = Integer.MAX_VALUE;
+
+    private void checkMinimum(int a) {
+        int difference = Math.abs(a);
+
+        if(difference < this.minimumDifference) {
+            this.minimumDifference = difference;
+        }
+    }
+
     public int solution(int[] A) {
-        int minimumDifference = Integer.MAX_VALUE;
+        int[] B = new int[A.length-1];
 
-        int currentSum = 0;
-        int totalSum = 0;
+        int leftSum = A[0];
+        int rightSum = A[A.length-1];
 
-        for(int i=0; i < A.length; i++) {
-            totalSum += A[i];
-        }
+        for(int i=1, j=A.length-1; i<A.length; i++, j--) {
+            B[i-1] += leftSum;
+            B[j-1] -= rightSum;
 
-        for(int i=0; i<A.length; i++) {
-            currentSum += A[i];
-            totalSum -= A[i];
-
-            int difference = Math.abs(currentSum - totalSum);
-
-            if(difference < minimumDifference) {
-                minimumDifference = difference;
+            if(j <= i) {
+                this.checkMinimum(B[i-1]);
+                this.checkMinimum(B[j-1]);
             }
+
+            leftSum += A[i];
+            rightSum += A[j-1];
         }
 
-        return minimumDifference;
+        return this.minimumDifference;
     }
 }
 
 /*
-A non-empty zero-indexed array A consisting of N integers is given. Array A represents numbers on a tape.
+ A non-empty zero-indexed array A consisting of N integers is given. Array A represents numbers on a tape.
  Any integer P, such that 0 < P < N, splits this tape into two non-empty parts: A[0], A[1], ..., A[P − 1] and A[P], A[P + 1], ..., A[N − 1].
  The difference between the two parts is the value of: |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
  In other words, it is the absolute difference between the sum of the first part and the sum of the second part.
@@ -65,6 +77,7 @@ A non-empty zero-indexed array A consisting of N integers is given. Array A repr
  A[2] = 2
  A[3] = 4
  A[4] = 3
+
  the function should return 1, as explained above.
 
  Assume that:

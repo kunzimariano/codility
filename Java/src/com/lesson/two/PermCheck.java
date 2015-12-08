@@ -5,20 +5,17 @@ package com.lesson.two;
  */
 public class PermCheck {
     public int solution(int[] A) {
-        int length = A.length;
+        int[] B = new int[A.length];
 
-        int expectedSum = (length+1)*length/2;
-        int realSum = 0;
-
-        for(int i=0; i<length; i++) {
-            realSum += A[i];
+        for(int i=0; i<A.length; i++) {
+            if(A[i]-1 < A.length && B[ A[i]-1 ] == 0) {
+                B[ A[i]-1 ] = 1;
+            } else {
+                return 0;
+            }
         }
 
-        if(expectedSum == realSum) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return 1;
     }
 }
 
