@@ -1,0 +1,20 @@
+{
+  "name": "codility",
+  "version": "0.0.1",
+  "description": "Codility lessons",
+  "main": "",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://kunzimariano@bitbucket.org/kunzimariano/codility.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/kunzimariano/codility#readme",
+  "dependencies": {
+    "eslint": "^3.15.0",
+    "ramda": "^0.23.0"
+  }
+}
