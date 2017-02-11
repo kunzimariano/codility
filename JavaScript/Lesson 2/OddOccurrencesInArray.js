@@ -1,17 +1,13 @@
 'use strict';
 
 function solution(A) {
-  let result = {};
+  let result = 0;
 
   A.forEach(function(number) {
-    if (number in result) {
-      delete result[number];
-    }
-    else {
-      result[number] = number;
-    }
-  });
-
-  let key = Object.keys(result)[0];
-  return result[key];
+    //using XOR bitwise operator
+    //equal numbers cancel each other
+    //leaving at the end the only number that isn't twice
+    result = result ^ number;
+  });  
+  return result;
 }
