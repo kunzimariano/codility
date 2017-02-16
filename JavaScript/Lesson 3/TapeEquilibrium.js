@@ -1,18 +1,11 @@
 'use strict';
 
-let sumArray = function(A) {
-  let sum = 0;
-  for (let i = 0; i < A.length; i++) {
-    sum += A[i];
-  }
-  return sum;
-};
-
 let solution = function(A) {
   let min = Number.MAX_SAFE_INTEGER;
-  let total = sumArray(A);
+  let total = A.reduce((acc, item) => acc += item, 0);
 
   for (let i = A.length - 1; i > 0; i--) {
+    //substract twice since it was already added once during the sum
     total -= A[i] * 2;
     min = Math.min(min, Math.abs(total));
   }
